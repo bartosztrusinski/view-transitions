@@ -1,24 +1,15 @@
-import { useEffect, useState } from 'react';
+import { MainPage } from './pages/MainPage';
+import { FirstArticle } from './pages/FirstArticle';
+import { SecondArticle } from './pages/SecondArticle';
 
-import { getRouteComponent } from './routes';
+import { Router, type Route } from './components/Router';
 
 export function App() {
-  const [currentRoute, setCurrentRoute] = useState('/');
-  const RouteComponent = getRouteComponent(currentRoute);
+  const routes: Route[] = [
+    { path: '/', component: MainPage },
+    { path: '/first-article', component: FirstArticle },
+    { path: '/second-article', component: SecondArticle },
+  ];
 
-  function handleUrlChange() {
-    document.startViewTransition(() => {
-      setCurrentRoute(window.location.pathname);
-    });
-  }
-
-  useEffect(() => {
-    window.addEventListener('popstate', handleUrlChange);
-
-    return () => {
-      window.removeEventListener('popstate', handleUrlChange);
-    };
-  }, []);
-
-  return <RouteComponent />;
+  return <Router routes={routes} />;
 }
