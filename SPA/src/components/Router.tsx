@@ -21,7 +21,9 @@ export function Router({ routes }: Props) {
   }
 
   function handlePathChange() {
-    setCurrentPath(window.location.pathname);
+    document.startViewTransition(() => {
+      setCurrentPath(window.location.pathname);
+    });
   }
 
   useEffect(() => {
