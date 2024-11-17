@@ -1,3 +1,22 @@
+import { useEffect, useState } from 'react';
+
+import { getRouteComponent } from './routes';
+
 export function App() {
-  return <h1>Hello</h1>;
+  const [currentRoute, setCurrentRoute] = useState('/');
+  const RouteComponent = getRouteComponent(currentRoute);
+
+  function handleUrlChange() {
+    setCurrentRoute(window.location.pathname);
+  }
+
+  useEffect(() => {
+    window.addEventListener('popstate', handleUrlChange);
+
+    return () => {
+      window.removeEventListener('popstate', handleUrlChange);
+    };
+  }, []);
+
+  return <RouteComponent />;
 }
