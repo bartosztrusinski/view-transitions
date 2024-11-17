@@ -1,3 +1,5 @@
+import { Link } from '../components/Link';
+
 export function SecondArticle() {
   return (
     <main>
@@ -28,7 +30,7 @@ export function SecondArticle() {
         laborum. Numquam distinctio totam veniam sequi cumque ipsum impedit
         maxime non reprehenderit, voluptatem quaerat?
       </p>
-      <a href='/'>Back to Home</a>
+      <Link to='/'>Back to Home</Link>
     </main>
   );
 }

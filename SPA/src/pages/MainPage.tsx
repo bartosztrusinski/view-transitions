@@ -1,3 +1,5 @@
+import { Link } from '../components/Link';
+
 export function MainPage() {
   return (
     <main>
@@ -11,7 +13,7 @@ export function MainPage() {
           quos quia quibusdam quidem voluptatum laboriosam doloremque quas
           doloribus.
         </p>
-        <a href='/first-article'>Read more</a>
+        <Link to='/first-article'>Read more</Link>
       </section>
       <hr />
       <section>
@@ -22,7 +24,7 @@ export function MainPage() {
           Perferendis et laboriosam asperiores illum velit quasi nostrum
           pariatur, accusamus culpa.
         </p>
-        <a href='/second-article'>Read more</a>
+        <Link to='/second-article'>Read more</Link>
       </section>
     </main>
   );

@@ -1,3 +1,5 @@
+import { Link } from '../components/Link';
+
 export function FirstArticle() {
   return (
     <main>
@@ -22,7 +24,7 @@ export function FirstArticle() {
         Culpa repellendus obcaecati, quia omnis reiciendis architecto dolore vel
         harum assumenda, iusto eum nihil vero ea numquam esse.
       </p>
-      <a href='/'>Back to Home</a>
+      <Link to='/'>Back to Home</Link>
     </main>
   );
 }
