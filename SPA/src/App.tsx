@@ -7,7 +7,9 @@ export function App() {
   const RouteComponent = getRouteComponent(currentRoute);
 
   function handleUrlChange() {
-    setCurrentRoute(window.location.pathname);
+    document.startViewTransition(() => {
+      setCurrentRoute(window.location.pathname);
+    });
   }
 
   useEffect(() => {
