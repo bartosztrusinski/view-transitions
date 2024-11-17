@@ -6,8 +6,8 @@ type Props = {
 export function Link({ children, to, ...rest }: Props) {
   function handleClick(event: React.MouseEvent<HTMLAnchorElement>) {
     event.preventDefault();
-    history.pushState(null, '', to);
-    dispatchEvent(new PopStateEvent('popstate'));
+    window.history.pushState(null, '', to);
+    window.dispatchEvent(new PopStateEvent('popstate'));
   }
 
   return (

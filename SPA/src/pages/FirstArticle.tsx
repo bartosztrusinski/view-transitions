@@ -1,4 +1,4 @@
-import { Link } from '../components/Link';
+import { Link } from '../routing/Link';
 
 export function FirstArticle() {
   return (
