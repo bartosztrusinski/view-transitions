@@ -12,3 +12,8 @@ export const routes: Route[] = [
   { path: '/first-article', component: FirstArticle },
   { path: '/second-article', component: SecondArticle },
 ];
+
+export function getRouteComponent(path: Route['path']): Route['component'] {
+  const route = routes.find((route) => route.path === path) ?? routes[0];
+  return route.component;
+}
