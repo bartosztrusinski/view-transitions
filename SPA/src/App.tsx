@@ -1,15 +1,17 @@
-import { MainPage } from './pages/MainPage';
-import { FirstArticle } from './pages/FirstArticle';
-import { SecondArticle } from './pages/SecondArticle';
+import { lazy, Suspense } from 'react';
 
 import { Router, type Route } from './routing/Router';
 
-export function App() {
-  const routes: Route[] = [
-    { path: '/', component: MainPage },
-    { path: '/first-article', component: FirstArticle },
-    { path: '/second-article', component: SecondArticle },
-  ];
+const routes: Route[] = [
+  { path: '/', component: lazy(() => import('./pages/MainPage')) },
+  { path: '/first-article', component: lazy(() => import('./pages/FirstArticle')) },
+  { path: '/second-article', component: lazy(() => import('./pages/SecondArticle')) },
+];
 
-  return <Router routes={routes} />;
+export function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Router routes={routes} />
+    </Suspense>
+  );
 }
