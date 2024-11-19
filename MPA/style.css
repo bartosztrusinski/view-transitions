@@ -45,9 +45,34 @@ p {
   navigation: auto;
 }
 
+/* Apply the custom animation to the old and new page states */
+
+::view-transition-group(root) {
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+&::view-transition-old(root) {
+  animation-name: move-to-left;
+}
+
+&::view-transition-new(root) {
+  animation-name: move-from-right;
+}
+
+:root[data-transition='back'] {
+  &::view-transition-old(root) {
+    animation-name: move-to-right;
+  }
+
+  &::view-transition-new(root) {
+    animation-name: move-from-left;
+  }
+}
+
 /* Create a custom animation */
 
-@keyframes move-out {
+@keyframes move-to-left {
   from {
     transform: translateX(0%);
   }
@@ -57,9 +82,9 @@ p {
   }
 }
 
-@keyframes move-in {
+@keyframes move-from-left {
   from {
-    transform: translateX(100%);
+    transform: translateX(-100%);
   }
 
   to {
@@ -67,12 +92,22 @@ p {
   }
 }
 
-/* Apply the custom animation to the old and new page states */
+@keyframes move-to-right {
+  from {
+    transform: translateX(0%);
+  }
 
-::view-transition-old(root) {
-  animation: 500ms ease-in-out both move-out;
+  to {
+    transform: translateX(100%);
+  }
 }
 
-::view-transition-new(root) {
-  animation: 500ms ease-in-out both move-in;
+@keyframes move-from-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
 }
