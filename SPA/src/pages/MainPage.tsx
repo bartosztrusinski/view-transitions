@@ -1,6 +1,16 @@
+import { useEffect } from 'react';
+
 import { Link } from '../routing/Link';
 
 export default function MainPage() {
+  useEffect(() => {
+    document.documentElement.dataset.transition = 'back';
+
+    return () => {
+      delete document.documentElement.dataset.transition;
+    };
+  }, []);
+
   return (
     <main>
       <h1>View Transitions</h1>
