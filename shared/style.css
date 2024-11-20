@@ -1,49 +1,4 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: sans-serif;
-  background-color: #14151f;
-  color: #ebebeb;
-}
-
-main {
-  padding: 2rem;
-  width: min(100% - 2rem, 70ch);
-  margin-inline: auto;
-}
-
-h1 {
-  text-align: center;
-}
-
-a {
-  display: inline-block;
-  color: #f13775;
-}
-
-main > * + * {
-  margin-top: 2rem;
-}
-
-section > * + * {
-  margin-top: 1rem;
-}
-
-p {
-  text-align: justify;
-  text-wrap: balance;
-}
-
-/* Turn cross-document view-transitions on */
-/* Note that this at-rule is all that is needed to create the default cross-fade animation  */
-
-@view-transition {
-  navigation: auto;
-}
+/* View Transitions */
 
 /* Apply the custom animation to the old and new page states */
 
@@ -110,4 +65,55 @@ p {
   to {
     transform: translateX(0%);
   }
+}
+
+/* Page */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #14151f;
+  color: #ebebeb;
+}
+
+main {
+  padding-block: 2rem;
+  width: min(100% - 2rem, 70ch);
+  margin-inline: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+a {
+  display: inline-block;
+  color: #f13775;
+}
+
+main > * + * {
+  margin-top: 2rem;
+}
+
+section {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #ebebeb;
+}
+
+section:last-child {
+  border-bottom: none;
+}
+
+section > * + * {
+  margin-top: 1rem;
+}
+
+p {
+  text-align: justify;
+  text-wrap: balance;
 }

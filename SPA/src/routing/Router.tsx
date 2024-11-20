@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 export type Route = {
   path: string;
-  component: React.ComponentType;
+  component: JSX.Element;
 };
 
 type Props = {
@@ -34,5 +34,5 @@ export function Router({ routes }: Props) {
     };
   }, []);
 
-  return <RouteComponent />;
+  return RouteComponent;
 }

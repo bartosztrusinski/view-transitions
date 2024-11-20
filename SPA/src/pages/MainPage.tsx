@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { Link } from '../routing/Link';
+import { articles } from '../lib/data';
 
 export default function MainPage() {
   useEffect(() => {
@@ -14,26 +15,13 @@ export default function MainPage() {
   return (
     <main>
       <h1>View Transitions</h1>
-      <section>
-        <h2>First Article</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quod, voluptates, quae,
-          quos quia quibusdam quidem voluptatum laboriosam doloremque quas doloribus. Quisquam quod,
-          voluptates, quae, quos quia quibusdam quidem voluptatum laboriosam doloremque quas
-          doloribus.
-        </p>
-        <Link to="/first-article">Read more</Link>
-      </section>
-      <hr />
-      <section>
-        <h2>Second Article</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto minima voluptatibus iure
-          eveniet incidunt dicta odit iste vero laborum! Perferendis et laboriosam asperiores illum
-          velit quasi nostrum pariatur, accusamus culpa.
-        </p>
-        <Link to="/second-article">Read more</Link>
-      </section>
+      {articles.map((article) => (
+        <section key={article.id}>
+          <h2>{article.title}</h2>
+          <p>{article.content.split('\n\n')[0]}</p>
+          <Link to={`/articles/${article.id}`}>Read more</Link>
+        </section>
+      ))}
     </main>
   );
 }
