@@ -1,11 +1,12 @@
 /* View Transitions */
 
-/* Apply the custom animation to the old and new page states */
-
-::view-transition-group(root) {
+/* Define animation properties for all transitions */
+::view-transition-group(*) {
   animation-duration: 500ms;
   animation-timing-function: ease-in-out;
 }
+
+/* Apply the custom animation to the old and new page states */
 
 &::view-transition-old(root) {
   animation-name: move-to-left;
@@ -88,6 +89,7 @@ main {
 }
 
 h1 {
+  font-size: 2.2rem;
   text-align: center;
 }
 
