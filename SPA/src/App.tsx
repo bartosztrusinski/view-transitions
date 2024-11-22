@@ -9,7 +9,7 @@ import { articles } from './lib/data';
 const articleRoutes: Route[] = articles.map((article) => {
   return {
     path: `/articles/${article.id}`,
-    component: <Article title={article.title} content={article.content} />,
+    component: <Article {...article} />,
   };
 });
 

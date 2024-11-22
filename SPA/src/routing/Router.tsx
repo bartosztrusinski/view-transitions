@@ -21,6 +21,7 @@ export function Router({ routes }: Props) {
   }
 
   function handlePathChange() {
+    // Trigger view transition when the path changes
     document.startViewTransition(() => {
       setCurrentPath(window.location.pathname);
     });

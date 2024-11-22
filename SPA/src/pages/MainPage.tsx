@@ -17,8 +17,12 @@ export default function MainPage() {
       <h1>View Transitions</h1>
       {articles.map((article) => (
         <section key={article.id}>
-          <h2>{article.title}</h2>
-          <p>{article.content.split('\n\n')[0]}</p>
+          <h2>
+            <span style={{ viewTransitionName: `title-${article.id}` }}>{article.title}</span>
+          </h2>
+          <p style={{ viewTransitionName: `paragraph-${article.id}` }}>
+            {article.content.split('\n\n')[0]}
+          </p>
           <Link to={`/articles/${article.id}`}>Read more</Link>
         </section>
       ))}
