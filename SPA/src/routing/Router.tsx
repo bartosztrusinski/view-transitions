@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 export type Route = {
   path: string;
@@ -20,14 +21,16 @@ export function Router({ routes }: Props) {
     return route ? route.component : mainRoute.component;
   }
 
-  function handlePathChange() {
-    // Trigger view transition when the path changes
-    document.startViewTransition(() => {
-      setCurrentPath(window.location.pathname);
-    });
-  }
-
   useEffect(() => {
+    function handlePathChange() {
+      // Trigger view transition when the path changes
+      document.startViewTransition(() => {
+        flushSync(() => {
+          setCurrentPath(window.location.pathname);
+        });
+      });
+    }
+
     window.addEventListener('popstate', handlePathChange);
 
     return () => {
