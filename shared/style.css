@@ -8,12 +8,17 @@
 
 /* Apply the custom animation to the old and new page states */
 
-&::view-transition-old(root) {
+::view-transition-old(root) {
   animation-name: move-to-left;
 }
 
-&::view-transition-new(root) {
+::view-transition-new(root) {
   animation-name: move-from-right;
+}
+
+::view-transition-old(heading) {
+  transform: translateY(-200%);
+  transition: transform 300ms ease-in-out;
 }
 
 :root[data-transition='back'] {
