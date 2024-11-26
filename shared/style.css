@@ -9,41 +9,51 @@
 /* Apply the custom animation to the old and new page states */
 
 ::view-transition-old(root) {
-  animation-name: move-to-left;
+  animation-name: slide-left;
 }
 
 ::view-transition-new(root) {
-  animation-name: move-from-right;
-}
-
-::view-transition-old(heading) {
-  transform: translateY(-200%);
-  transition: transform 300ms ease-in-out;
+  animation-name: slide-from-right;
 }
 
 :root[data-transition='back'] {
   &::view-transition-old(root) {
-    animation-name: move-to-right;
+    animation-name: slide-right;
   }
 
   &::view-transition-new(root) {
-    animation-name: move-from-left;
+    animation-name: slide-from-left;
   }
+}
+
+.heading {
+  view-transition-name: heading;
+}
+
+::view-transition-old(heading) {
+  animation-name: slide-up;
+}
+
+::view-transition-new(heading) {
+  animation-name: slide-up;
+  animation-direction: reverse;
 }
 
 /* Create a custom animation */
 
-@keyframes move-to-left {
-  from {
-    transform: translateX(0%);
+@keyframes slide-up {
+  to {
+    transform: translateY(-200%);
   }
+}
 
+@keyframes slide-left {
   to {
     transform: translateX(-100%);
   }
 }
 
-@keyframes move-from-left {
+@keyframes slide-from-left {
   from {
     transform: translateX(-100%);
   }
@@ -53,17 +63,13 @@
   }
 }
 
-@keyframes move-to-right {
-  from {
-    transform: translateX(0%);
-  }
-
+@keyframes slide-right {
   to {
     transform: translateX(100%);
   }
 }
 
-@keyframes move-from-right {
+@keyframes slide-from-right {
   from {
     transform: translateX(100%);
   }

@@ -15,7 +15,7 @@ export default function MainPage() {
   return (
     <main>
       <h1>
-        <span style={{ viewTransitionName: 'heading' }}>View Transitions</span>
+        <span className="heading">View Transitions</span>
       </h1>
       {articles.map((article) => (
         <section key={article.id}>
