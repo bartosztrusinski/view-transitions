@@ -18,7 +18,7 @@ const routes: Route[] = [{ path: '/', component: <MainPage /> }, ...articleRoute
 export function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Router routes={routes} />
+      <Router routes={routes} viewTransitions />
     </Suspense>
   );
 }

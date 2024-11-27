@@ -8,9 +8,10 @@ export type Route = {
 
 type Props = {
   routes: Route[];
+  viewTransitions?: boolean;
 };
 
-export function Router({ routes }: Props) {
+export function Router({ routes, viewTransitions }: Props) {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const RouteComponent = getRouteComponent(currentPath);
 
@@ -23,12 +24,12 @@ export function Router({ routes }: Props) {
 
   useEffect(() => {
     function handlePathChange() {
-      // Trigger view transition when the path changes
-      document.startViewTransition(() => {
-        flushSync(() => {
-          setCurrentPath(window.location.pathname);
-        });
-      });
+      const startRouteChange = () => setCurrentPath(window.location.pathname);
+
+      // Trigger view transition when the path changes and update state synchronously
+      viewTransitions
+        ? document.startViewTransition(() => flushSync(startRouteChange))
+        : startRouteChange();
     }
 
     window.addEventListener('popstate', handlePathChange);
