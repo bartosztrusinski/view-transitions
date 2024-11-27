@@ -7,10 +7,16 @@ export default function Article({ id, title, content }: Props) {
   return (
     <main>
       <h1>
-        <span style={{ viewTransitionName: `title-${id}` }}>{title}</span>
+        <span className="title" style={{ viewTransitionName: `title-${id}` }}>
+          {title}
+        </span>
       </h1>
       {content.split('\n\n').map((paragraph, index) => (
-        <p key={index} style={{ viewTransitionName: index === 0 ? `paragraph-${id}` : undefined }}>
+        <p
+          key={index}
+          className={index === 0 ? 'paragraph' : ''}
+          style={{ viewTransitionName: index === 0 ? `paragraph-${id}` : undefined }}
+        >
           {paragraph}
         </p>
       ))}

@@ -1,0 +1,33 @@
+.title {
+  view-transition-class: title;
+}
+
+.paragraph {
+  view-transition-class: paragraph;
+}
+
+::view-transition-group(.title),
+::view-transition-group(.paragraph) {
+  animation-timing-function: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+/* Add custom transition to titles and paragraphs
+ that do not have matching element in new or old page */
+
+::view-transition-old(.title):only-child {
+  animation-name: slide-left;
+}
+
+::view-transition-new(.title):only-child {
+  animation-name: slide-left;
+  animation-direction: reverse;
+}
+
+::view-transition-old(.paragraph):only-child {
+  animation-name: slide-left;
+}
+
+::view-transition-new(.paragraph):only-child {
+  animation-name: slide-left;
+  animation-direction: reverse;
+}

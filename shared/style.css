@@ -2,19 +2,22 @@
 
 /* Define animation properties for all transitions */
 ::view-transition-group(*) {
-  animation-duration: 500ms;
-  animation-timing-function: ease-in-out;
+  animation-duration: 600ms;
+  animation-timing-function: linear;
 }
 
-/* Apply the custom animation to the old and new page states */
+/* Apply the custom transition to the old and new page states */
 
 ::view-transition-old(root) {
   animation-name: slide-left;
 }
 
 ::view-transition-new(root) {
-  animation-name: slide-from-right;
+  animation-name: slide-right;
+  animation-direction: reverse;
 }
+
+/* Reverse animation when going back to home page */
 
 :root[data-transition='back'] {
   &::view-transition-old(root) {
@@ -22,9 +25,11 @@
   }
 
   &::view-transition-new(root) {
-    animation-name: slide-from-left;
+    animation-name: slide-left;
   }
 }
+
+/* Custom transition for heading */
 
 .heading {
   view-transition-name: heading;
@@ -39,43 +44,23 @@
   animation-direction: reverse;
 }
 
-/* Create a custom animation */
+/* Animations */
 
 @keyframes slide-up {
   to {
-    transform: translateY(-200%);
+    translate: 0 -15vh;
   }
 }
 
 @keyframes slide-left {
   to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slide-from-left {
-  from {
-    transform: translateX(-100%);
-  }
-
-  to {
-    transform: translateX(0%);
+    translate: -100vw;
   }
 }
 
 @keyframes slide-right {
   to {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes slide-from-right {
-  from {
-    transform: translateX(100%);
-  }
-
-  to {
-    transform: translateX(0%);
+    translate: 100vw;
   }
 }
 

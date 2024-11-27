@@ -5,6 +5,7 @@ const Article = lazy(() => import('./components/Article'));
 
 import { Router, type Route } from './routing/Router';
 import { articles } from './lib/data';
+import './style.css';
 
 const articleRoutes: Route[] = articles.map((article) => {
   return {
