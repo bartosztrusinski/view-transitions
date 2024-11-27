@@ -27,7 +27,7 @@ export function Router({ routes, viewTransitions }: Props) {
       const startRouteChange = () => setCurrentPath(window.location.pathname);
 
       // Trigger view transition when the path changes and update state synchronously
-      viewTransitions
+      viewTransitions && document.startViewTransition
         ? document.startViewTransition(() => flushSync(startRouteChange))
         : startRouteChange();
     }
