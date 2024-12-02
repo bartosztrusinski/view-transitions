@@ -20,7 +20,9 @@ export default function Article({ id, title, content }: Props) {
           {paragraph}
         </p>
       ))}
-      <Link to="/">Back to Home</Link>
+      <Link to="/" preload="hover">
+        Back to Home
+      </Link>
     </main>
   );
 }

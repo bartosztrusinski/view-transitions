@@ -1,20 +1,8 @@
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 
-const MainPage = lazy(() => import('./pages/MainPage'));
-const Article = lazy(() => import('./components/Article'));
-
-import { Router, type Route } from './routing/Router';
-import { articles } from './lib/data';
 import './style.css';
-
-const articleRoutes: Route[] = articles.map((article) => {
-  return {
-    path: `/articles/${article.id}`,
-    component: <Article {...article} />,
-  };
-});
-
-const routes: Route[] = [{ path: '/', component: <MainPage /> }, ...articleRoutes];
+import { Router } from './routing/Router';
+import { routes } from './lib/routes';
 
 export function App() {
   return (

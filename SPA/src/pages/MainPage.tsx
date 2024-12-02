@@ -4,6 +4,7 @@ import { Link } from '../routing/Link';
 import { articles } from '../lib/data';
 
 export default function MainPage() {
+  // Apply reversed view transition when navigating back to the main page
   useEffect(() => {
     document.documentElement.dataset.transition = 'back';
 
@@ -27,7 +28,9 @@ export default function MainPage() {
           <p className="paragraph" style={{ viewTransitionName: `paragraph-${article.id}` }}>
             {article.content.split('\n\n')[0]}
           </p>
-          <Link to={`/articles/${article.id}`}>Read more</Link>
+          <Link to={`/articles/${article.id}`} preload="hover">
+            Read more
+          </Link>
         </section>
       ))}
     </main>

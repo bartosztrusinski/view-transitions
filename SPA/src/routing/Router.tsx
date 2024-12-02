@@ -4,6 +4,7 @@ import { flushSync } from 'react-dom';
 export type Route = {
   path: string;
   component: JSX.Element;
+  preload?: () => void;
 };
 
 type Props = {
@@ -11,16 +12,15 @@ type Props = {
   viewTransitions?: boolean;
 };
 
+const MAIN_ROUTE = '/';
+
+export const getCurrentRoute = (routes: Route[], path: Route['path']): Route | undefined =>
+  routes.find((route) => route.path === path);
+
+const getMainRoute = (routes: Route[]) => getCurrentRoute(routes, MAIN_ROUTE);
+
 export function Router({ routes, viewTransitions }: Props) {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
-  const RouteComponent = getRouteComponent(currentPath);
-
-  function getRouteComponent(path: Route['path']): Route['component'] {
-    const route = routes.find((route) => route.path === path);
-    const mainRoute = routes.find((route) => route.path === '/')!;
-
-    return route ? route.component : mainRoute.component;
-  }
 
   useEffect(() => {
     function handlePathChange() {
@@ -38,6 +38,14 @@ export function Router({ routes, viewTransitions }: Props) {
       window.removeEventListener('popstate', handlePathChange);
     };
   }, []);
+
+  const mainRoute = getMainRoute(routes);
+
+  if (!mainRoute) {
+    throw new Error(`No main route found. Make sure you have a route with path "${MAIN_ROUTE}"`);
+  }
+
+  const { component: RouteComponent } = getCurrentRoute(routes, currentPath) ?? mainRoute;
 
   return RouteComponent;
 }
