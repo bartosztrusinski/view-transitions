@@ -1,29 +1,8 @@
 import { Suspense } from 'react';
 
-const MainPage = lazyWithPreload(() => import('./pages/MainPage'));
-const Article = lazyWithPreload(() => import('./components/Article'));
-
 import './style.css';
-import { Router, type Route } from './routing/Router';
-import { lazyWithPreload } from './lib/lazyWithPreload';
-import { articles } from './lib/data';
-
-const articleRoutes: Route[] = articles.map((article) => {
-  return {
-    path: `/articles/${article.id}`,
-    component: <Article {...article} />,
-    preload: Article.preload,
-  };
-});
-
-export const routes: Route[] = [
-  {
-    path: '/',
-    component: <MainPage />,
-    preload: MainPage.preload,
-  },
-  ...articleRoutes,
-];
+import { Router } from './routing/Router';
+import { routes } from './lib/routes';
 
 export function App() {
   return (

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { getCurrentRoute, Route } from './Router';
-import { routes } from '../App';
+import { routes } from '../lib/routes';
 
 type Props = {
   to: Route['path'];
