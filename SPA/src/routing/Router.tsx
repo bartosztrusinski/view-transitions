@@ -23,11 +23,12 @@ export function Router({ routes, viewTransitions }: Props) {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
-    function handlePathChange() {
+    function handlePathChange(event: PopStateEvent) {
       const startRouteChange = () => setCurrentPath(window.location.pathname);
 
-      // Trigger view transition when the path changes and update state synchronously
-      viewTransitions && document.startViewTransition
+      // Trigger view transition when the path changes and update DOM synchronously
+      // Only if browser supports it and if transition in not already provided by UA (swipe gesture)
+      viewTransitions && !event.hasUAVisualTransition && document.startViewTransition
         ? document.startViewTransition(() => flushSync(startRouteChange))
         : startRouteChange();
     }
